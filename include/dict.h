@@ -2,7 +2,7 @@
 #include <string.h>
 
 #define NUMBER_OF_CODONS 64
-
+//yes
 
 
 struct pair {
