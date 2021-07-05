@@ -10,7 +10,7 @@
 #define BOOL unsigned char
 #define TRUE 1
 #define FALSE 0
-
+//ok
 
 enum errors {
     NO_ERROR = 0,
