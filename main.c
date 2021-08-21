@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "include/dict.h"
 #include "include/aa.h"
+#include "include/colors.h"
 #include <string.h>
 
 #include "include/str_util.h"
@@ -60,6 +61,8 @@ void print_aa_from_codons(const char * mRNA) {
 }
 
 int main(int argc, char *argv[]) {
+    printf(blue, "hello!");
+
     fill_codon_to_aa_with_data();
 
     if (argc == 1) {

@@ -18,6 +18,10 @@ void scan_mRNA_and_print_each_aa(char mRNA[]) {
 
 }
 
+
+
+
+
 const char * get_aa_from_codon_using_codon_to_aa(const char * codon, struct pair codon_to_aa[]) {
     unsigned int i = 0;
     for (i; i < 64; i++) {
