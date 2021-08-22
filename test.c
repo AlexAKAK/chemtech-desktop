@@ -1,9 +1,8 @@
 #include <stdio.h>
-
+#include <string.h>
 
 int main(void) {
-    printf("\033[0;33m");
-    printf("hello");
+    printf("%i\n", strcmp("h", "ha"));
 
 
 

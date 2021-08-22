@@ -11,6 +11,13 @@
 #define BOOL unsigned char
 #define TRUE 1
 #define FALSE 0
+
+
+#define STRCMP_BOOL char
+#define STRCMP_TRUE 0
+#define STRCMP_FALSE -1
+
+
 //ok
 
 enum errors {
@@ -30,9 +37,7 @@ const char * get_aa_from_codon_using_codon_to_aa(const char * codon, struct pair
 
 void translate(char * mRNA) {
     printf("mRNA Strand: ");
-    printf(yellow);
-    printf(mRNA);
-    printf(white);
+    print_strand(mRNA);
     printf("\n-----------------\n");
 
     while (strlen(mRNA) != 0) {
