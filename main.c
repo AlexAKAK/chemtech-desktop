@@ -29,6 +29,11 @@ const char * get_aa_from_codon_using_codon_to_aa(const char * codon, struct pair
 }
 
 void transcribe(char * mRNA) {
+    printf("mRNA Strand: ");
+    printf(yellow);
+    printf(mRNA);
+    printf(white);
+    printf("\n-----------------\n");
 
     while (strlen(mRNA) != 0) {
         // get the codon
@@ -61,6 +66,12 @@ void print_aa_from_codons(const char * mRNA) {
 }
 
 void translate(char * DNA) {
+    printf("DNA Strand: ");
+    printf(yellow);
+    printf(DNA);
+    printf(white);
+    printf("\n-----------------\n");
+
     char * mRNA = DNA;
     unsigned int i = 0;
     for (i; i < strlen(mRNA); i++) {
