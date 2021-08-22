@@ -28,7 +28,7 @@ const char * get_aa_from_codon_using_codon_to_aa(const char * codon, struct pair
     }
 }
 
-void scan_mRNA_and_print_each_aa(char * mRNA) {
+void transcribe(char * mRNA) {
 
     while (strlen(mRNA) != 0) {
         // get the codon
@@ -38,7 +38,7 @@ void scan_mRNA_and_print_each_aa(char * mRNA) {
 
         // get aa from the codon
         const char * aa = get_aa_from_codon_using_codon_to_aa(codon, codon_to_aa);
-        printf("%s\n", aa);
+        print_aa(aa);
 
         //shift mRNA to the right by 3 bytes
         mRNA += 3;
@@ -98,15 +98,13 @@ int main(int argc, char *argv[]) {
     char * strand = argv[2];
 
 
-    
-
     if (strlen(strand) % 3 != 0) {
         printf("mRNA length must be divisible by 3.");
         return EXIT_FAILURE;
     }
 
     if (strcmp(action, "transcribe")) {
-        scan_mRNA_and_print_each_aa(strand);
+        transcribe(strand);
     }
     if (strcmp(action, "translate")) {
         translate(strand);

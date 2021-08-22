@@ -1,3 +1,5 @@
+#ifndef AMINO_ACIDS
+#define AMINO_ACIDS
 #define Phenylalanine "Phenylalanine"
 #define Leucine "Leucine"
 #define Serine "Serine"
@@ -19,3 +21,4 @@
 #define Glutamic_Acid "Glutamic Acid"
 #define Glycine "Glycine"
 #define Lysine "Lysine"
+#endif

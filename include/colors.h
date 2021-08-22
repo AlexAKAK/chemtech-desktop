@@ -1,4 +1,5 @@
 #include <string.h>
+#include "aa.h"
 #ifndef COLORS
 #define COLORS
 #define black "\033[0;30m"
@@ -9,6 +10,7 @@
 #define purple "\033[0;35m"
 #define cyan "\033[0;36m"
 #define white "\033[0;37m"
+
 
 
 void print_red(char c) {
@@ -58,6 +60,31 @@ void print_strand(const char * strand) {
         print_nucleotide(strand[i]);
     }
     printf("\n");
+}
+
+void print_aa(const char * aa) {
+    if (strcmp(aa, "Methionine") == 0) {
+        printf(green);
+        printf(aa);
+        printf(white);
+        printf("\n");
+        return;
+    }
+
+    else if (strcmp(aa, STOP) == 0) {
+        printf(red);
+        printf(aa);
+        printf(white);
+        printf("\n");
+        return;
+    }
+
+    else {
+        printf(cyan);
+        printf(aa);
+        printf(white);
+        printf("\n");
+    }
 }
 
 
