@@ -60,29 +60,57 @@ void print_aa_from_codons(const char * mRNA) {
 
 }
 
+void translate(char * DNA) {
+    char * mRNA = DNA;
+    unsigned int i = 0;
+    for (i; i < strlen(mRNA); i++) {
+        if (mRNA[i] == 'a') mRNA[i] = 'u';
+    }
+    i = 0;
+    for (i; i < strlen(mRNA); i++) {
+        if (mRNA[i] == 'c') mRNA[i] = 'x';
+    }
+    for (i; i < strlen(mRNA); i++) {
+        if (mRNA[i] == 'g') mRNA[i] = 'c';
+    }
+    for (i; i < strlen(mRNA); i++) {
+        if (mRNA[i] == 'x') mRNA[i] = 'g';
+    }
+
+    print_strand(mRNA);
+}
+
 int main(int argc, char *argv[]) {
-    printf(blue, "hello!");
 
     fill_codon_to_aa_with_data();
 
-    if (argc == 1) {
-        printf("you must provide an mRNA sequence");
+    if (argc == 2) {
+        printf("you must provide an mRNA sequence and an action");
         return EXIT_FAILURE;
     }
 
-    if (argc > 2) {
-        printf("You must provide 1 command line argument");
+    if (argc > 3) {
+        printf("You must provide 2 command line arguments");
         return EXIT_FAILURE;
     }
 
-    char * mRNA = argv[1];
+    char * action = argv[1];
+    char * strand = argv[2];
 
-    if (strlen(mRNA) % 3 != 0) {
+
+    
+
+    if (strlen(strand) % 3 != 0) {
         printf("mRNA length must be divisible by 3.");
         return EXIT_FAILURE;
     }
 
-    scan_mRNA_and_print_each_aa(mRNA);
+    if (strcmp(action, "transcribe")) {
+        scan_mRNA_and_print_each_aa(strand);
+    }
+    if (strcmp(action, "translate")) {
+        translate(strand);
+    }
 
     return EXIT_SUCCESS;
 }
