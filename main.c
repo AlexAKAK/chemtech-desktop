@@ -117,11 +117,11 @@ int main(int argc, char *argv[]) {
         return EXIT_FAILURE;
     }
 
-    if (strcmp(action, "transcribe")) {
-        translate(strand);
-    }
-    if (strcmp(action, "translate")) {
+    if (strcmp(action, "transcribe") == 0) {
         transcribe(strand);
+    }
+    if (strcmp(action, "translate") == 0) {
+        translate(strand);
     
     }
     return EXIT_SUCCESS;
