@@ -23,12 +23,12 @@ const char * get_aa_from_codon_using_codon_to_aa(const char * codon, struct pair
     for (i; i < 64; i++) {
         // check if the codon equals the key at the i position in the codon_to_aa hashtable
         if (strcmp(codon, codon_to_aa[i].key) == 0) {
-            return codon_to_aa[i].val;;
+            return codon_to_aa[i].val;
         }
     }
 }
 
-void transcribe(char * mRNA) {
+void translate(char * mRNA) {
     printf("mRNA Strand: ");
     printf(yellow);
     printf(mRNA);
@@ -65,7 +65,7 @@ void print_aa_from_codons(const char * mRNA) {
 
 }
 
-void translate(char * DNA) {
+void transcribe(char * DNA) {
     printf("DNA Strand: ");
     printf(yellow);
     printf(DNA);
@@ -87,6 +87,9 @@ void translate(char * DNA) {
     for (i; i < strlen(mRNA); i++) {
         if (mRNA[i] == 'x') mRNA[i] = 'g';
     }
+    for (i; i < strlen(mRNA); i++) {
+        if (mRNA[i] == 't') mRNA[i] = 'a';
+    }
 
     print_strand(mRNA);
 }
@@ -95,8 +98,8 @@ int main(int argc, char *argv[]) {
 
     fill_codon_to_aa_with_data();
 
-    if (argc == 2) {
-        printf("you must provide an mRNA sequence and an action");
+    if (argc <= 2) {
+        printf("You must provide a nucleotide sequence and an action");
         return EXIT_FAILURE;
     }
 
@@ -115,11 +118,12 @@ int main(int argc, char *argv[]) {
     }
 
     if (strcmp(action, "transcribe")) {
-        transcribe(strand);
-    }
-    if (strcmp(action, "translate")) {
         translate(strand);
     }
-
+    if (strcmp(action, "translate")) {
+        transcribe(strand);
+    
+    }
     return EXIT_SUCCESS;
+    
 }
