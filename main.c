@@ -57,6 +57,23 @@ void translate(char * mRNA) {
 
 }
 
+void complementary(char * strand) {
+    size_t length = strlen(strand);
+    char * complementary_strand = malloc(length * sizeof(char) + sizeof(char));
+    int i = 0;
+    for (i; i < length; i++) {
+        if (strand[i] == 'a') complementary_strand[i] = 't';
+        if (strand[i] == 't') complementary_strand[i] = 'a';
+        if (strand[i] == 'c') complementary_strand[i] = 'g';
+        if (strand[i] == 'g') complementary_strand[i] = 'c';
+        if (strand[i] == 'u') complementary_strand[i] = 'a';
+    }
+    // add the null byte
+    complementary_strand[length] = '\0';
+
+    print_strand(complementary_strand);
+}
+
 void print_aa_from_codons(const char * mRNA) {
     unsigned int i = 0;
     for (i; i < strlen(mRNA); i += 3) {
@@ -77,24 +94,17 @@ void transcribe(char * DNA) {
     printf(white);
     printf("\n-----------------\n");
 
-    char * mRNA = DNA;
+    size_t length = strlen(DNA);
+    char * mRNA = malloc(sizeof(char) * length + sizeof(char));
     unsigned int i = 0;
-    for (i; i < strlen(mRNA); i++) {
-        if (mRNA[i] == 'a') mRNA[i] = 'u';
+    for (i; i < length; i++) {
+        if (DNA[i] == 'a') mRNA[i] = 'u';
+        if (DNA[i] == 't') mRNA[i] = 'a';
+        if (DNA[i] == 'c') mRNA[i] = 'g';
+        if (DNA[i] == 'g') mRNA[i] = 'c';
     }
-    i = 0;
-    for (i; i < strlen(mRNA); i++) {
-        if (mRNA[i] == 'c') mRNA[i] = 'x';
-    }
-    for (i; i < strlen(mRNA); i++) {
-        if (mRNA[i] == 'g') mRNA[i] = 'c';
-    }
-    for (i; i < strlen(mRNA); i++) {
-        if (mRNA[i] == 'x') mRNA[i] = 'g';
-    }
-    for (i; i < strlen(mRNA); i++) {
-        if (mRNA[i] == 't') mRNA[i] = 'a';
-    }
+
+    mRNA[length] = '\0';    
 
     print_strand(mRNA);
 }
@@ -118,7 +128,7 @@ int main(int argc, char *argv[]) {
 
 
     if (strlen(strand) % 3 != 0) {
-        printf("mRNA length must be divisible by 3.");
+        printf("Strand length must be divisible by 3.");
         return EXIT_FAILURE;
     }
 
@@ -127,8 +137,16 @@ int main(int argc, char *argv[]) {
     }
     if (strcmp(action, "translate") == 0) {
         translate(strand);
-    
     }
+    if (strcmp(action, "complementary") == 0) {
+        complementary(strand);
+    }
+    
+    if (strcmp(action, "commands") == 0) {
+        printf("transcribe\ntranslate\ncomplementary\n");
+    }
+
+    getchar();
     return EXIT_SUCCESS;
     
 }
